@@ -1,6 +1,8 @@
 # my-musicplayer
 
-> A Vue.js project
+一个Vue.js的项目
+
+将常见的音乐播放器案例加入了Vuex进行改写，非常适合初学Vue和Vuex的朋友入门练手的一个项目
 
 ## Build Setup
 
@@ -27,4 +29,7 @@ npm run e2e
 npm test
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+播放器的页面布局和后台数据API使用的是该案例的模板，这是案例的[链接](http://www.autumnfish.cn/yuemusic//index.html)
+
+### 后续用户登录、歌曲收藏等功能正在开发当中......
+
