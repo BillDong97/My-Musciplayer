@@ -33,9 +33,9 @@ export default {
   }
 
   .cover img#bar {
-    position: absolute;
-    left: 427px;
-    top: 62px;
+    position: relative;
+    left: 30px;
+    top: 0px;
     z-index: 10;
     transform-origin: 12px 12px;
     transition: 1s;
@@ -47,22 +47,30 @@ export default {
     transform: rotate(0 deg);
   }
   .rotate {
-    float:left;
     position: relative;
+    width: 254px;
+    height: 255px;
+    top:-55px;
+    left:50px;
+    margin:0;
   }
+
   .rotate img#pic {
     width: 150px;
     height: 150px;
-    position: relative;
-    left:0px;
-    top:-126px;
+    position: absolute;
+    left:50px;
+    top:50px;
     z-index: 8;
+    margin:0;
+
   }
   .rotate img#disc {
-    position: relative;
+    position: absolute;
     left:0px;
-    top:80px;
+    top:0px;
     z-index: 9;
+    margin:0;
   }
   @keyframes rotate {
       0%{

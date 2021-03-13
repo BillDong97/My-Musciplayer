@@ -9,8 +9,10 @@ const state = {
   songList: [],
   commentList: [],
   songUrl: '',
+  mvURL: '',
   songPlaying: '',
   isPlay: false,
+  isPlayMV: false,
   picUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1781691707,1570613443&fm=26&gp=0.jpg'
 }
 
@@ -20,6 +22,15 @@ const mutations = {
   },
   pause (state) {
     state.isPlay = false
+  },
+  playMV (state) {
+    state.isPlayMV = true
+    state.songUrl = ''
+    state.isPlay = false
+  },
+  stopMV (state) {
+    state.isPlayMV = false
+    state.mvURL = ''
   },
   updateSearch (state, value) {
     state.search = value
@@ -38,6 +49,9 @@ const mutations = {
   },
   setPicUrl (state, {url}) {
     state.picUrl = url
+  },
+  setMVURL (state, {url}) {
+    state.mvURL = url
   }
 }
 
@@ -50,11 +64,11 @@ const actions = {
     axios.get('https://autumnfish.cn/search?keywords=' + state.search)
       .then(res => {
         commit('setSongList', {songList: res.data.result.songs})
-        console.log(res)
+        console.log(res.data.result.songs)
       },
       err => {
         console.log(err)
-        commit('setsongPlaying', {name: '对不起，您尚未连接到网络'})
+        commit('setSongPlaying', {name: '对不起，您尚未连接到网络'})
       })
   },
   playMusic ({commit}, {name, id}) {
@@ -94,6 +108,17 @@ const actions = {
           url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1781691707,1570613443&fm=26&gp=0.jpg'
         })
       })
+  },
+  playMV ({commit}, {mvid}) {
+    // 获取mvURL
+    axios.get('https://autumnfish.cn/mv/url?id=' + mvid)
+      .then(res => {
+        // 改变MV播放状态
+        commit('playMV')
+        // 将mvURL赋给video的src属性
+        console.log(res)
+        commit('setMVURL', {url: res.data.data.url})
+      }).catch(err => console.log(err))
   }
 }
 
